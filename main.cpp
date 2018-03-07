@@ -1,15 +1,14 @@
-#include <iostream>
-#include <string>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
-using namespace std;
-
-string GetHello()
+int main(int argc, char *argv[])
 {
-    return "Hello";
-}
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-int main()
-{
-    cout << GetHello() + " " + GetAdressat("world") + "!" << endl;
-    return 0;
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+    return -1;
+    return app.exec();
 }
